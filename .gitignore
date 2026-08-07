@@ -34,3 +34,5 @@ Thumbs.db
 *.sw?
 .temp
 .tmp
+
+context/
