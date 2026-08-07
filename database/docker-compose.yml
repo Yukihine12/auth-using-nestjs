@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: postgres_container
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    env_file:
+      - ../.env
+    environment:
+      POSTGRES_DB: ${DB_NAME:-yuki_cloud_db}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      TZ: ${TZ:-Asia/Jakarta}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
