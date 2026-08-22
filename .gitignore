@@ -5,6 +5,7 @@
 
 # Node dependencies
 node_modules/
+docs/
 
 # Build & compiled output
 dist/
@@ -34,5 +35,3 @@ Thumbs.db
 *.sw?
 .temp
 .tmp
-
-context/
