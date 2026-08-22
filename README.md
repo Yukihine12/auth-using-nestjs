@@ -1,6 +1,6 @@
-# ☁️ Sabit Cloud - Backend Service
+# ☁️ e-comerce latihan - Backend Service
 
-Repository ini berisi layanan backend untuk proyek **Sabit Cloud**, dibangun menggunakan **NestJS**, **TypeScript**, dan **PostgreSQL**.
+Repository ini berisi layanan backend untuk proyek **E-comerce mandiri**, dibangun menggunakan **NestJS**, **TypeScript**, dan **PostgreSQL**.
 
 ---
 
@@ -65,11 +65,3 @@ npm run test
 ```
 
 ---
-
-## 📚 Dokumentasi Selengkapnya
-
-Dokumentasi lengkap proyek dapat ditemukan di direktori [`docs/`](file:///d:/kuliah/kuliah/yukihine/project/prepare-for-sabit-cloud/docs):
-- [Panduan Cara Memulai](file:///d:/kuliah/kuliah/yukihine/project/prepare-for-sabit-cloud/docs/guides/CARA_MEMULAI_DAN_MENJALANKAN.md)
-- [Arsitektur & Alur Kerja](file:///d:/kuliah/kuliah/yukihine/project/prepare-for-sabit-cloud/docs/architecture/ARSITEKTUR_DAN_ALUR_KERJA.md)
-- [Panduan Testing API](file:///d:/kuliah/kuliah/yukihine/project/prepare-for-sabit-cloud/docs/guides/PANDUAN_TESTING_API.md)
-- [Milestones Progress](file:///d:/kuliah/kuliah/yukihine/project/prepare-for-sabit-cloud/docs/milestones/)
