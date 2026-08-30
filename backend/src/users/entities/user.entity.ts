@@ -1,23 +1,34 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { Cloud } from "../../cloud/entities/cloud.entity";
+import { Entity, PrimaryColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('users')
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column({ unique: true })
+    @PrimaryColumn()
     email: string;
 
     @Column()
     name: string;
 
     @Column()
-    password: string;
+    telp_no: string;
 
-    @Column({ default: 'user' })
-    role: string;
+    @Column()
+    address: string;
 
-    @OneToMany(() => Cloud, (cloud) => cloud.user)
-    clouds: Cloud[];
+    @Column()
+    city: string;
+
+    @Column()
+    province: string;
+
+    @Column()
+    country: string;
+
+    @Column()
+    postal_code: string;
+
+    @CreateDateColumn()
+    created_at: Date;
+
+    @UpdateDateColumn()
+    updated_at: Date;
 }

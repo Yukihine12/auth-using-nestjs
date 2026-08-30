@@ -1,7 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import { Otp } from './entities/otp.entity';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -11,9 +13,18 @@ describe('AuthService', () => {
       providers: [
         AuthService,
         {
+          provide: getRepositoryToken(Otp),
+          useValue: {
+            findOneBy: jest.fn(),
+            create: jest.fn(),
+            save: jest.fn(),
+          },
+        },
+        {
           provide: UsersService,
           useValue: {
             findByEmail: jest.fn(),
+            create: jest.fn(),
           },
         },
         {

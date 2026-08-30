@@ -13,17 +13,12 @@ export class UsersService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   async create(createUserDto: CreateUserDto) {
-    const saltRounds = Number(this.configService.get<number>('SALT_ROUNDS', 10));
-    const hashedPassword = await bcrypt.hash(createUserDto.password, saltRounds);
-
     const newUser = this.userRepository.create({
-      ...createUserDto,
-      password: hashedPassword,
+      ...createUserDto
     });
-
     return await this.userRepository.save(newUser);
   }
 
@@ -31,21 +26,21 @@ export class UsersService {
     return await this.userRepository.find();
   }
 
-  async findOne(id: number) {
-    return await this.userRepository.findOneBy({ id });
-  }
-
   async findByEmail(email: string) {
     return await this.userRepository.findOneBy({ email });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
-    await this.userRepository.update(id, updateUserDto);
-    return this.findOne(id);
+  async update(email: string, updateUserDto: UpdateUserDto) {
+    await this.userRepository.update(email, updateUserDto);
+    return this.userRepository.findOneBy({ email });
   }
 
-  async remove(id: number) {
-    await this.userRepository.delete(id);
-    return { message: `User #${id} berhasil dihapus` };
+  async remove(email: string) {
+    const user = await this.userRepository.findOneBy({ email });
+    if (!user) {
+      return { message: `User dengan #${email} tidak ditemukan` };
+    }
+    await this.userRepository.delete(email);
+    return { message: `User dengan #${email} berhasil dihapus` };
   }
 }

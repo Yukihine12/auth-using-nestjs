@@ -1,24 +1,43 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
+import { IsEmail, IsNotEmpty, IsString, IsOptional } from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export class CreateUserDto {
-    @ApiProperty({ example: 'Muqtada Backend', description: 'Nama lengkap user' })
-    @IsString()
-    @IsNotEmpty()
-    name: string;
-
-    @ApiProperty({ example: 'admin@yukicloud.com', description: 'Email aktif user' })
-    @IsEmail()
-    @IsNotEmpty()
+    @ApiProperty({ example: 'user@yukicloud.com', description: 'Email aktif user (Primary Key)' })
+    @IsEmail({}, { message: 'Format email tidak valid' })
+    @IsNotEmpty({ message: 'Email tidak boleh kosong' })
     email: string;
 
-    @ApiProperty({ example: 'SecretPassword123!', description: 'Password minimal 8 karakter' })
+    @ApiPropertyOptional({ example: 'Muqtada Backend', description: 'Nama lengkap user' })
     @IsString()
-    @MinLength(8)
-    password: string;
+    @IsOptional()
+    name?: string;
 
-    @ApiProperty({ example: 'admin', description: 'Peran pengguna (admin/user)' })
+    @ApiPropertyOptional({ example: '08123456789', description: 'Nomor telepon' })
     @IsString()
-    @IsNotEmpty()
-    role: string;
+    @IsOptional()
+    telp_no?: string;
+    @ApiPropertyOptional({ example: 'Jl. Merdeka No. 45', description: 'Alamat tempat tinggal' })
+    @IsString()
+    @IsOptional()
+    address?: string;
+
+    @ApiPropertyOptional({ example: 'Bandung', description: 'Kota' })
+    @IsString()
+    @IsOptional()
+    city?: string;
+
+    @ApiPropertyOptional({ example: 'Jawa Barat', description: 'Provinsi' })
+    @IsString()
+    @IsOptional()
+    province?: string;
+
+    @ApiPropertyOptional({ example: 'Indonesia', description: 'Negara' })
+    @IsString()
+    @IsOptional()
+    country?: string;
+
+    @ApiPropertyOptional({ example: '40111', description: 'Kode pos' })
+    @IsString()
+    @IsOptional()
+    postal_code?: string;
 }
